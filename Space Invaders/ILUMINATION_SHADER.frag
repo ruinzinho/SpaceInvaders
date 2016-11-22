@@ -51,7 +51,7 @@ void main(void) {
 	float fogfactor = (35.0f - fogcoord) / (35.0f - 8.0f);
 	fogfactor = clamp(fogfactor, 0.0f, 1.0f);
 	
-	vec4 fog_color = vec4(0.5f, 0.5f, 0.5f, 0.0f);
+	vec4 fogcolor = vec4(0.5f, 0.5f, 0.5f, 0.0f);
 	
-	out_Color = mix(fog_color, vec4(emission + ambient + diffuse + specular, material.alpha), fogfactor);
+	out_Color = mix(fogcolor, vec4(emission + ambient + diffuse + specular, material.alpha), fogfactor);
 }

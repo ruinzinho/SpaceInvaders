@@ -42,3 +42,8 @@ void Agent::Move(const glm::vec3 &direction) {
 glm::vec3 Agent::Position(void) {
 	return position;
 }
+
+
+glm::vec3 Agent::Direction(void) {
+	return direction;
+}

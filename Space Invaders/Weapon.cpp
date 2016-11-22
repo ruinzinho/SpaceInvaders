@@ -28,3 +28,8 @@ void Weapon::Update(float dt) {
 	velocity = 5.0f * direction;
 	position = position + velocity * dt;
 }
+
+
+void Weapon::Position(const glm::vec3 &position) {
+	this->position = position;
+}

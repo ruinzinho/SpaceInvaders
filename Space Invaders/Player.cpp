@@ -1,5 +1,7 @@
 #include "Player.hpp"
 
+#include <glm/geometric.hpp>
+
 
 Player::Player(const glm::vec3 &position) : Agent(position), leftWeapon(position + glm::vec3(-0.5f, 0.0f, 0.0f)), rightWeapon(position + glm::vec3(0.5f, 0.0f, 0.0f)) {
 }
@@ -23,18 +25,29 @@ Player::~Player(void) {
 
 
 void Player::Update(float dt) {
-	glm::vec3 velocity;
+	glm::vec3 vel;
+	glm::vec3 pos = position;
 
-	velocity = 4.0f * direction;
-	position = position + velocity * dt;
+	vel = 4.0f * direction;
+	pos = pos + vel * dt;
+
+	if (!(pos.x < -14.0f || pos.x > 14.0f ||
+		pos.z < 0.0f || pos.z > 19.0f)) {
+		position = pos;
+	}
 }
 
 
 void Player::Fire(void) {
-	glm::vec3 direction(0.0f, 0.0f, -1.0f);
+	if (glm::length(leftWeapon.Direction()) != 0.0f && glm::length(rightWeapon.Direction()) != 0.0f) {
+		glm::vec3 direction(0.0f, 0.0f, -1.0f);
 
-	leftWeapon.Move(direction);
-	rightWeapon.Move(direction);
+		leftWeapon.Position(position + glm::vec3(-1.0f, 0.0f, 0.0f));
+		rightWeapon.Position(position + glm::vec3(1.0f, 0.0f, 0.0f));
+
+		leftWeapon.Move(direction);
+		rightWeapon.Move(direction);
+	}
 }
 
 

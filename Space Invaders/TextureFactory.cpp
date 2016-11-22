@@ -58,10 +58,12 @@ void TextureFactory::Initialize(void) {
 	Texture2D &white = CreateTexture2DFromFile("WHITE_TEXTURE.dds");
 	Texture2D &black = CreateTexture2DFromFile("BLACK_TEXTURE.dds");
 	Texture2D &blankNormal = CreateTexture2DFromFile("BLANK_NORMAL_TEXTURE.dds");
+	Texture2D &spaceInvaderslogo = CreateTexture2DFromFile("SPACE_INVADERS_LOGO_TEXTURE.dds");
 
 	textures2D["WHITE_TEXTURE"] = white;
 	textures2D["BLACK_TEXTURE"] = black;
 	textures2D["BLANK_NORMAL_TEXTURE"] = blankNormal;
+	textures2D["SPACE_INVADERS_LOGO_TEXTURE"] = spaceInvaderslogo;
 }
 
 
@@ -122,6 +124,11 @@ Texture &TextureFactory::BlackTexture(void) {
 
 Texture &TextureFactory::BlankNormalTexture(void) {
 	return textures2D["BLANK_NORMAL_TEXTURE"];
+}
+
+
+Texture &TextureFactory::SpaceInvadersLogoTexture(void) {
+	return textures2D["SPACE_INVADERS_LOGO_TEXTURE"];
 }
 
 

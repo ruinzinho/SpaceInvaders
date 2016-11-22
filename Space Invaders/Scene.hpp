@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include <glm/mat4x4.hpp>
 
 #include "ModelFactory.hpp"
@@ -18,6 +20,7 @@ class Scene {
 
 	float aspect;
 
+	glm::mat4 shadowMatrix;
 	glm::mat4 projectionMatrix;
 	glm::mat4 viewMatrix;
 
@@ -49,4 +52,5 @@ private:
 	void DrawPlayer(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, float alpha = 1.0f);
 	void DrawEnemies(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, float alpha = 1.0f);
 	void DrawFloor(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, float alpha = 1.0f);
+	void DrawBillboard(const glm::vec3 &position, const glm::mat4 &matrix, float alpha = 1.0f);
 };

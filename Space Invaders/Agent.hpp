@@ -21,4 +21,5 @@ public:
 
 public:
 	glm::vec3 Position(void);
+	glm::vec3 Direction(void);
 };

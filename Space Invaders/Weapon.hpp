@@ -13,4 +13,7 @@ public:
 
 public:
 	void Update(float dt);
+
+public:
+	void Position(const glm::vec3 &position);
 };

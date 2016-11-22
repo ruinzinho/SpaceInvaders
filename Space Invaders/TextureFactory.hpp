@@ -34,6 +34,7 @@ public:
 	Texture &WhiteTexture(void);
 	Texture &BlackTexture(void);
 	Texture &BlankNormalTexture(void);
+	Texture &SpaceInvadersLogoTexture(void);
 
 public:
 	void Delete(void);
