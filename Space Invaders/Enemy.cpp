@@ -26,6 +26,10 @@ void Enemy::Update(float dt) {
 
 	velocity = 1.0f * direction;
 	position = position + velocity * dt;
+
+	if (position.x <= -15.0f || position.x >= 15.0f) {
+		direction = direction * -1.0f;
+	}
 }
 
 
@@ -38,4 +42,12 @@ void Enemy::Fire(void) {
 
 Weapon Enemy::MiddleWeapon(void) {
 	return middleWeapon;
+}
+
+glm::vec3 Enemy::Direction(void) {
+	return direction;
+}
+
+void Enemy::Direction(glm::vec3 & direction) {
+	this->direction = direction;
 }

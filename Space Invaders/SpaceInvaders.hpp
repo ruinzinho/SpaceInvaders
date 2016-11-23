@@ -12,6 +12,7 @@ class SpaceInvaders {
 
 	Player player;
 	std::vector<Enemy> enemies;
+	glm::vec3 enemiesDirection;
 	
 public:
 	SpaceInvaders(void);

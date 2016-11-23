@@ -20,4 +20,7 @@ public:
 
 public:
 	Weapon MiddleWeapon(void);
+
+	glm::vec3 Direction(void);
+	void Direction(glm::vec3 &direction);
 };

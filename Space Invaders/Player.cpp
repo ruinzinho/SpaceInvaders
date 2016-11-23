@@ -35,6 +35,9 @@ void Player::Update(float dt) {
 		pos.z < 0.0f || pos.z > 19.0f)) {
 		position = pos;
 	}
+
+	leftWeapon.Update(dt);
+	rightWeapon.Update(dt);
 }
 
 
