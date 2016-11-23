@@ -82,7 +82,7 @@ void Scene::Render(SpaceInvaders &spaceInvaders) {
 	switch (cameraType) {
 	case Scene::CameraType::FIXED_OTHOGONAL:
 		cameraPos = glm::vec3(0.0f, 5.0f, 0.0f);
-		projectionMatrix = glm::ortho(-10.0f * aspect, 10.0f * aspect, 0.0f, 20.0f, 0.0f, 10.0f);
+		projectionMatrix = glm::ortho(-15.0f * aspect, 15.0f * aspect, 0.0f, 20.0f, 0.0f, 10.0f);
 		viewMatrix = glm::lookAt(cameraPos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f));
 		break;
 	case Scene::CameraType::FIXED_PERSPECTIVE:
@@ -148,7 +148,7 @@ void Scene::Delete(void) {
 
 void Scene::FixedOrthogonal(void) {
 	// Removed
-	// cameraType = CameraType::FIXED_OTHOGONAL;
+	 cameraType = CameraType::FIXED_OTHOGONAL;
 }
 
 
@@ -310,7 +310,7 @@ void Scene::DrawEnemies(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, f
 		program.Uniform3f("material.diffuse", 1.0f, 1.0f, 1.0f);
 		program.Uniform3f("material.specular", 0.0f, 0.0f, 0.0f);
 		program.Uniform1i("material.shininess", 0);
-		program.Uniform1f("material.alpha", alpha);
+		program.Uniform1f("material.alpha", alpha * enemy.Alpha());
 
 		glm::mat4 modelMatrix = glm::translate(matrix, glm::vec3(0.0f, 0.5f, -1.0f));
 		modelMatrix = glm::translate(modelMatrix, enemy.Position());

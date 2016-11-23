@@ -17,6 +17,8 @@ public:
 public:
 	void Update(float dt);
 	void Fire(void);
+	void FireColision(void);
+
 
 public:
 	Weapon GetWeapon(void);

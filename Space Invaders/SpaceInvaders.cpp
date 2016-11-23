@@ -1,5 +1,13 @@
 #include "SpaceInvaders.hpp"
 
+#include <glm/glm.hpp>
+
+
+
+#include <iostream>
+#include <sstream>
+#include <string>
+
 
 SpaceInvaders::SpaceInvaders(void) : player(glm::vec3(0.0f, 0.0f, 0.0f)) {
 	paused = false;
@@ -72,13 +80,27 @@ SpaceInvaders::~SpaceInvaders(void) {
 
 
 void SpaceInvaders::Update(float dt) {
-	player.Update(dt);
+	int i = 0;
+	int j = -1;
 
+	player.Update(dt);
 	for (Enemy &enemy : enemies) {
+		i++;
 		enemy.Direction(enemiesDirection);
 		enemy.Update(dt);
 		if (enemy.Direction() != enemiesDirection)
 			enemiesDirection = enemiesDirection * -1.0f;
+		if (glm::distance(enemy.Position(), player.GetWeapon().Position()) < 1.5f) {
+			player.FireColision();
+//			enemy.FireColision();
+//			if(enemy.Alpha() == 0.0f)
+				j = i;
+		}
+	}
+
+	if (j != -1) {
+		enemies.erase(enemies.begin() + (j - 1));
+		points += 10;
 	}
 
 }

@@ -1,11 +1,14 @@
 #include "Enemy.hpp"
 
 
+
 Enemy::Enemy(const glm::vec3 &position) : Agent(position), middleWeapon(position) {
+	alpha = 1.0f;
 }
 
 
 Enemy::Enemy(const Enemy &enemy) : Agent(enemy), middleWeapon(enemy.middleWeapon) {
+	alpha = 1.0f;
 }
 
 
@@ -40,6 +43,12 @@ void Enemy::Fire(void) {
 }
 
 
+void Enemy::FireColision() {
+	if (alpha != 0.0f)
+		alpha -= 0.5f;
+}
+
+
 Weapon Enemy::MiddleWeapon(void) {
 	return middleWeapon;
 }
@@ -50,4 +59,14 @@ glm::vec3 Enemy::Direction(void) {
 
 void Enemy::Direction(glm::vec3 & direction) {
 	this->direction = direction;
+}
+
+
+float Enemy::Alpha() {
+	return alpha;
+}
+
+
+void Enemy::Alpha(float alpha) {
+	this->alpha = alpha;
 }

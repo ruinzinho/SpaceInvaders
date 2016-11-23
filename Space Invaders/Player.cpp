@@ -42,8 +42,16 @@ void Player::Update(float dt) {
 
 
 void Player::Fire(void) {
+	if (weapon.Direction() == glm::vec3(0.0f, 0.0f, 0.0f)) {
 		weapon.Position(position);
 		weapon.Direction(glm::vec3(0.0f, 0.0f, -1.0f));
+	}
+}
+
+
+void Player::FireColision() {
+	weapon.Position(position);
+	weapon.Direction(glm::vec3(0.0f, 0.0f, 0.0f));
 }
 
 
