@@ -5,6 +5,7 @@
 #include <glm/mat4x4.hpp>
 
 #include "ModelFactory.hpp"
+#include "PointLight.hpp"
 #include "ShaderFactory.hpp"
 #include "SpaceInvaders.hpp"
 #include "TextureFactory.hpp"
@@ -27,6 +28,8 @@ class Scene {
 	ModelFactory modelFactory;
 	ShaderFactory shaderFactory;
 	TextureFactory textureFactory;
+
+	PointLight light;
 
 public:
 	Scene(void);

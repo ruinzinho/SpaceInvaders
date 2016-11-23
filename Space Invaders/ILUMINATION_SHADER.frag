@@ -36,7 +36,7 @@ void main(void) {
 	vec3 ambient = material.ambient * light.color;
 	
 	vec3 n = normalize(texture(normaltexture, texcoord.st).rgb * 2.0f - 1.0f);
-	vec3 l = normalize((tbn * light.position) - (tbn * position));
+	vec3 l = normalize(tbn * (light.position - position));
 	
 	vec3 diffuse = material.diffuse * light.color * texture(diffusetexture, texcoord.st).rgb * max(dot(n, l), 0.0f);
 

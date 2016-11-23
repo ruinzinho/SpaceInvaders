@@ -27,7 +27,7 @@ void Player::Update(float dt) {
 	glm::vec3 vel;
 	glm::vec3 pos = position;
 
-	vel = 4.0f * direction;
+	vel = 5.0f * direction;
 	pos = pos + vel * dt;
 
 	if (!(pos.x < -14.0f || pos.x > 14.0f ||
@@ -55,6 +55,16 @@ void Player::FireColision() {
 }
 
 
+void Player::Position(const glm::vec3 &position) {
+	this->position = position;
+}
+
+
 Weapon Player::GetWeapon(void) {
 	return weapon;
+}
+
+
+glm::vec3 Player::Position(void) {
+	return position;
 }
