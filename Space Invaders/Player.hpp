@@ -6,8 +6,7 @@
 #include "Weapon.hpp"
 
 class Player : public Agent {
-	Weapon leftWeapon;
-	Weapon rightWeapon;
+	Weapon weapon;
 
 public:
 	Player(const glm::vec3 &position);
@@ -20,6 +19,5 @@ public:
 	void Fire(void);
 
 public:
-	Weapon LeftWeapon(void);
-	Weapon RightWeapon(void);
+	Weapon GetWeapon(void);
 };

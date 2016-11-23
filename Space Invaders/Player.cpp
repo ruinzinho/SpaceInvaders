@@ -3,18 +3,17 @@
 #include <glm/geometric.hpp>
 
 
-Player::Player(const glm::vec3 &position) : Agent(position), leftWeapon(position + glm::vec3(-0.5f, 0.0f, 0.0f)), rightWeapon(position + glm::vec3(0.5f, 0.0f, 0.0f)) {
+Player::Player(const glm::vec3 &position) : Agent(position), weapon(position) {
 }
 
 
-Player::Player(const Player &player) : Agent(player), leftWeapon(leftWeapon), rightWeapon(rightWeapon) {
+Player::Player(const Player &player) : Agent(player), weapon(position) {
 }
 
 
 Player &Player::operator=(const Player &player) {
 	Agent::operator=(player);
-	leftWeapon = player.leftWeapon;
-	rightWeapon = player.rightWeapon;
+	weapon = player.weapon;
 
 	return *this;
 }
@@ -42,23 +41,16 @@ void Player::Update(float dt) {
 
 
 void Player::Fire(void) {
-	if (glm::length(leftWeapon.Direction()) != 0.0f && glm::length(rightWeapon.Direction()) != 0.0f) {
+	if (glm::length(weapon.Direction()) != 0.0f) {
 		glm::vec3 direction(0.0f, 0.0f, -1.0f);
 
-		leftWeapon.Position(position + glm::vec3(-1.0f, 0.0f, 0.0f));
-		rightWeapon.Position(position + glm::vec3(1.0f, 0.0f, 0.0f));
+		weapon.Position(position + glm::vec3(-1.0f, 0.0f, 0.0f));
 
-		leftWeapon.Move(direction);
-		rightWeapon.Move(direction);
+		weapon.Move(direction);
 	}
 }
 
 
-Weapon Player::LeftWeapon(void) {
-	return leftWeapon;
-}
-
-
-Weapon Player::RightWeapon(void) {
-	return rightWeapon;
+Weapon Player::GetWeapon(void) {
+	return weapon;
 }
