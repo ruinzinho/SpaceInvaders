@@ -186,7 +186,7 @@ void Scene::DrawPlayer(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, fl
 
 	Player player = spaceInvaders.Players();
 
-	Texture &emissionTexture = textureFactory.BlackTexture();
+	Texture &emissionTexture = textureFactory.WhiteTexture();
 	Texture &diffuseTexture = textureFactory.ARC170DiffuseTexture();
 	Texture &specularTexture = textureFactory.ARC170SpecularTexture();
 	Texture &normalTexture = textureFactory.ARC170NormalTexture();
@@ -235,7 +235,7 @@ void Scene::DrawPlayer(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, fl
 
 	model.Draw();
 
-	program.Uniform3f("material.emission", 1.0f, 1.0f, 1.0f);
+	program.Uniform3f("material.emission", 0.2f, 0.8f, 0.0f);
 	program.Uniform3f("material.ambient", 0.1f, 0.1f, 0.0f);
 	program.Uniform3f("material.diffuse", 0.0f, 0.0f, 0.0f);
 	program.Uniform3f("material.specular", 0.0f, 0.0f, 0.0f);

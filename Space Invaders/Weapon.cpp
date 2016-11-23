@@ -27,6 +27,10 @@ void Weapon::Update(float dt) {
 
 	velocity = 5.0f * direction;
 	position = position + velocity * dt;
+
+	if (position.z <= -20.0f) {
+		direction = glm::vec3(0.0f, 0.0f, 0.0f);
+	}
 }
 
 

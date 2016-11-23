@@ -7,7 +7,7 @@ Player::Player(const glm::vec3 &position) : Agent(position), weapon(position) {
 }
 
 
-Player::Player(const Player &player) : Agent(player), weapon(position) {
+Player::Player(const Player &player) : Agent(player), weapon(player.weapon) {
 }
 
 
@@ -34,20 +34,16 @@ void Player::Update(float dt) {
 		pos.z < 0.0f || pos.z > 19.0f)) {
 		position = pos;
 	}
-
-	leftWeapon.Update(dt);
-	rightWeapon.Update(dt);
+	weapon.Update(dt);
+	if (weapon.Direction() == glm::vec3(0.0f, 0.0f, 0.0f)) {
+		weapon.Position(position);
+	}
 }
 
 
 void Player::Fire(void) {
-	if (glm::length(weapon.Direction()) != 0.0f) {
-		glm::vec3 direction(0.0f, 0.0f, -1.0f);
-
-		weapon.Position(position + glm::vec3(-1.0f, 0.0f, 0.0f));
-
-		weapon.Move(direction);
-	}
+		weapon.Position(position);
+		weapon.Direction(glm::vec3(0.0f, 0.0f, -1.0f));
 }
 
 

@@ -47,3 +47,8 @@ glm::vec3 Agent::Position(void) {
 glm::vec3 Agent::Direction(void) {
 	return direction;
 }
+
+
+void Agent::Direction(glm::vec3 &direction) {
+	this->direction = direction;
+}
