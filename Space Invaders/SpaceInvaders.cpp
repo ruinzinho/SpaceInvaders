@@ -74,6 +74,10 @@ SpaceInvaders::~SpaceInvaders(void) {
 
 
 void SpaceInvaders::Update(float dt) {
+	if (paused) {
+		dt = 0;
+	}
+
 	player.Update(dt);
 
 	for (Enemy &enemy : enemies) {
