@@ -20,4 +20,8 @@ public:
 
 public:
 	Weapon GetWeapon(void);
+	glm::vec3 Position(void);
+
+public:
+	void Position(const glm::vec3 &position);
 };

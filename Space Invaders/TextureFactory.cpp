@@ -274,5 +274,10 @@ Texture2D TextureFactory::CreateTexture2DFromFile(const std::string &filename) {
 	Texture2D texture2D;
 	texture2D.Id(ReadFromFile(filename));
 
+	texture2D.Bind();
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+	texture2D.Unbind();
+
 	return texture2D;
 }

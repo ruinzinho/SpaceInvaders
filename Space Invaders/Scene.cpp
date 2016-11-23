@@ -10,6 +10,9 @@ Scene::Scene(void) {
 
 	aspect = 1;
 
+	this->light.Color(glm::vec3(1.0f, 1.0f, 1.0f));
+	this->light.Position(glm::vec3(0.0f, 3.0f, -7.5f));
+
 	glm::vec4 plane(0.0f, 1.0f, 0.0f, 0.0f);
 	glm::vec4 light(-30.0f, 50.0f, -5.0f, 1.0f);
 
@@ -147,8 +150,7 @@ void Scene::Delete(void) {
 
 
 void Scene::FixedOrthogonal(void) {
-	// Removed
-	// cameraType = CameraType::FIXED_OTHOGONAL;
+	cameraType = CameraType::FIXED_OTHOGONAL;
 }
 
 
@@ -163,6 +165,12 @@ void Scene::FlexiblePerspective(void) {
 
 
 void Scene::TogglePointLights(void) {
+	if (light.Color() == glm::vec3(0.5f, 0.5f, 0.5f)) {
+		light.Color(glm::vec3(1.0f, 1.0f, 1.0f));
+	}
+	else {
+		light.Color(glm::vec3(0.5f, 0.5f, 0.5f));
+	}
 }
 
 
@@ -179,10 +187,11 @@ void Scene::DrawPlayer(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, fl
 
 	program.Use();
 
-	glm::vec3 lightPosition = viewMatrix * glm::vec4(0.0f, 3.0f, -7.5f, 1.0f);
+	glm::vec3 lightPosition = viewMatrix * glm::vec4(light.Position(), 1.0f);
+	glm::vec3 lightColor = light.Color();
 
-	program.Uniform3fv("light.position", 1, &lightPosition[0]);
-	program.Uniform3f("light.color", 1.0f, 1.0f, 1.0f);
+	program.Uniform3fv("light.position", 1, &lightPosition.x);
+	program.Uniform3fv("light.color", 1, &lightColor.r);
 
 	Player player = spaceInvaders.Players();
 
@@ -240,7 +249,12 @@ void Scene::DrawPlayer(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, fl
 	program.Uniform3f("material.diffuse", 0.0f, 0.0f, 0.0f);
 	program.Uniform3f("material.specular", 0.0f, 0.0f, 0.0f);
 	program.Uniform1i("material.shininess", 20);
-	program.Uniform1f("material.alpha", alpha);
+	if (player.GetWeapon().Direction() == glm::vec3(0.0f, 0.0f, 0.0f)) {
+		program.Uniform1f("material.alpha", 0.0f);
+	}
+	else {
+		program.Uniform1f("material.alpha", alpha);
+	}
 
 	modelMatrix = glm::translate(matrix, glm::vec3(0.0f, 0.5f, -1.0f));
 	modelMatrix = glm::translate(modelMatrix, player.GetWeapon().Position());
@@ -273,10 +287,11 @@ void Scene::DrawEnemies(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, f
 
 	program.Use();
 
-	glm::vec3 lightPosition = viewMatrix * glm::vec4(0.0f, 3.0f, -7.5f, 1.0f);
+	glm::vec3 lightPosition = viewMatrix * glm::vec4(light.Position(), 1.0f);
+	glm::vec3 lightColor = light.Color();
 
-	program.Uniform3fv("light.position", 1, &lightPosition[0]);
-	program.Uniform3f("light.color", 1.0f, 1.0f, 1.0f);
+	program.Uniform3fv("light.position", 1, &lightPosition.x);
+	program.Uniform3fv("light.color", 1, &lightColor.r);
 
 	for (Enemy &enemy : spaceInvaders.Enemies()) {
 		Texture &emissionTexture = textureFactory.AK5EmissionTexture();
@@ -343,10 +358,11 @@ void Scene::DrawFloor(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, flo
 
 	program.Use();
 
-	glm::vec3 lightPosition = viewMatrix * glm::vec4(0.0f, 3.0f, -7.5f, 1.0f);
+	glm::vec3 lightPosition = viewMatrix * glm::vec4(light.Position(), 1.0f);
+	glm::vec3 lightColor = light.Color();
 
-	program.Uniform3fv("light.position", 1, &lightPosition[0]);
-	program.Uniform3f("light.color", 1.0f, 1.0f, 1.0f);
+	program.Uniform3fv("light.position", 1, &lightPosition.x);
+	program.Uniform3fv("light.color", 1, &lightColor.r);
 
 	Texture &emissionTexture = textureFactory.BlackTexture();
 	Texture &diffuseTexture = textureFactory.SandstoneDiffuseTexture();
@@ -411,10 +427,11 @@ void Scene::DrawBillboard(const glm::vec3 &position, const glm::mat4 &matrix, fl
 
 	program.Use();
 
-	glm::vec3 lightPosition = viewMatrix * glm::vec4(0.0f, 3.0f, -7.5f, 1.0f);
+	glm::vec3 lightPosition = viewMatrix * glm::vec4(light.Position(), 1.0f);
+	glm::vec3 lightColor = light.Color();
 
-	program.Uniform3fv("light.position", 1, &lightPosition[0]);
-	program.Uniform3f("light.color", 1.0f, 1.0f, 1.0f);
+	program.Uniform3fv("light.position", 1, &lightPosition.x);
+	program.Uniform3fv("light.color", 1, &lightColor.r);
 
 	Texture &emissionTexture = textureFactory.SpaceInvadersLogoTexture();
 	Texture &diffuseTexture = textureFactory.WhiteTexture();

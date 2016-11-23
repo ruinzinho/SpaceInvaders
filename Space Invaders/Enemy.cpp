@@ -27,7 +27,7 @@ void Enemy::Update(float dt) {
 	velocity = 1.0f * direction;
 	position = position + velocity * dt;
 
-	if (position.x <= -15.0f || position.x >= 15.0f) {
+	if (position.x <= -14.0f || position.x >= 14.0f) {
 		direction = direction * -1.0f;
 	}
 }

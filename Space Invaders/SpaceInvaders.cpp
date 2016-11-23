@@ -53,6 +53,7 @@ SpaceInvaders::SpaceInvaders(const SpaceInvaders &spaceInvaders) : player(spaceI
 	lives = spaceInvaders.lives;
 	points = spaceInvaders.points;
 	enemies = spaceInvaders.enemies;
+	enemiesDirection = spaceInvaders.enemiesDirection;
 }
 
 
@@ -62,6 +63,7 @@ SpaceInvaders &SpaceInvaders::operator=(const SpaceInvaders &spaceInvaders) {
 	points = spaceInvaders.points;
 	player = spaceInvaders.player;
 	enemies = spaceInvaders.enemies;
+	enemiesDirection = spaceInvaders.enemiesDirection;
 
 	return *this;
 }
@@ -109,6 +111,50 @@ void SpaceInvaders::Restart(void) {
 	paused = false;
 	lives = 5;
 	points = 0;
+
+	player.Position(glm::vec3(0.0f, 0.0f, 0.0f));
+
+	enemiesDirection = glm::vec3(+1.0f, 0.0f, 0.0f);
+
+	enemies.clear();
+	enemies.push_back(Enemy(glm::vec3(-11.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(-9.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(-7.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(-5.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(-3.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(-1.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(+1.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(+3.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(+5.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(+7.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(+9.0f, 0.0f, -18.0f)));
+	enemies.push_back(Enemy(glm::vec3(+11.0f, 0.0f, -18.0f)));
+
+	enemies.push_back(Enemy(glm::vec3(-11.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(-9.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(-7.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(-5.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(-3.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(-1.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(+1.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(+3.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(+5.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(+7.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(+9.0f, 0.0f, -15.0f)));
+	enemies.push_back(Enemy(glm::vec3(+11.0f, 0.0f, -15.0f)));
+
+	enemies.push_back(Enemy(glm::vec3(-11.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(-9.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(-7.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(-5.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(-3.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(-1.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(+1.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(+3.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(+5.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(+7.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(+9.0f, 0.0f, -12.0f)));
+	enemies.push_back(Enemy(glm::vec3(+11.0f, 0.0f, -12.0f)));
 }
 
 

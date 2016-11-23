@@ -79,6 +79,7 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="PointLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Log.hpp" />
@@ -139,5 +140,6 @@
     <ClInclude Include="Scene.hpp">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="PointLight.hpp" />
   </ItemGroup>
 </Project>
