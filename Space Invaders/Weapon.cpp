@@ -30,6 +30,11 @@ void Weapon::Update(float dt) {
 }
 
 
+glm::vec3 Weapon::Position(void) {
+	return position;
+}
+
+
 void Weapon::Position(const glm::vec3 &position) {
 	this->position = position;
 }

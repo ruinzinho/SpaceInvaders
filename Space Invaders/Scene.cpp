@@ -235,6 +235,30 @@ void Scene::DrawPlayer(SpaceInvaders &spaceInvaders, const glm::mat4 &matrix, fl
 
 	model.Draw();
 
+	program.Uniform3f("material.emission", 1.0f, 1.0f, 1.0f);
+	program.Uniform3f("material.ambient", 0.1f, 0.1f, 0.0f);
+	program.Uniform3f("material.diffuse", 0.0f, 0.0f, 0.0f);
+	program.Uniform3f("material.specular", 0.0f, 0.0f, 0.0f);
+	program.Uniform1i("material.shininess", 20);
+	program.Uniform1f("material.alpha", alpha);
+
+	modelMatrix = glm::translate(matrix, glm::vec3(0.0f, 0.5f, -1.0f));
+	modelMatrix = glm::translate(modelMatrix, player.GetWeapon().Position());
+
+	textureMatrix = glm::mat4(1.0f);
+
+	modelViewMatrix = viewMatrix * modelMatrix;
+	modelViewProjectionMatrix = projectionMatrix * modelViewMatrix;
+	normalMatrix = glm::transpose(glm::inverse(glm::mat3(modelViewMatrix)));
+
+	program.UniformMatrix4fv("NormalMatrix", 1, false, &normalMatrix[0][0]);
+	program.UniformMatrix4fv("TextureMatrix", 1, false, &textureMatrix[0][0]);
+	program.UniformMatrix4fv("ModelViewMatrix", 1, false, &modelViewMatrix[0][0]);
+	program.UniformMatrix4fv("ModelViewProjectionMatrix", 1, false, &modelViewProjectionMatrix[0][0]);
+
+	IDrawable &laser = modelFactory.LaserModel();
+	laser.Draw();
+
 	normalTexture.Unbind();
 	specularTexture.Unbind();
 	diffuseTexture.Unbind();
